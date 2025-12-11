@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="get your Whatsapp link from just your phone number"
+    />
+    <title>Whatsapp Message Link Generator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="container">
+      <hgroup>
+        <h1>Whatsapp Message Link Generator</h1>
+        <p>get a custom message by clicking the wa.me link</p>
+      </hgroup>
+    </header>
+    <main class="container">
+      <fieldset>
+        <input
+          type="number"
+          id="wami-number"
+          placeholder="Enter Whatsapp Phone Number (do not include the country code)"
+        />
+        <input
+          type="text"
+          placeholder="Enter your Custom Message"
+          id="wami-text"
+        />
+        <input
+          type="submit"
+          id="generate-btn"
+          value="Generate Whatsapp Link and Message"
+        />
+      </fieldset>
+      <p id="app"></p>
+    </main>
+    <footer class="container neog-footer">
+      <small>
+        go from zero to hero at full stack development with
+        <a href="https://neog.camp">neog.camp</a>
+      </small>
+    </footer>
+    <script>
+      function getWamiMessageLink(phoneNumber, message) {
+        return (
+          "https://wa.me/+91" +
+          phoneNumber +
+          "?text=" +
+          encodeURIComponent(message)
+        );
+      }
+
+      function handleGenerateClick() {
+        const wamiMessageLink = getWamiMessageLink(
+          phoneNumberElement.value,
+          messageElement.value
+        );
+        appElement.innerText = wamiMessageLink;
+      }
+
+      const phoneNumberElement = document.getElementById("wami-number");
+      const messageElement = document.getElementById("wami-text");
+      const buttonElement = document.getElementById("generate-btn");
+      const appElement = document.getElementById("app");
+
+      buttonElement.addEventListener("click", handleGenerateClick);
+    </script>
+  </body>
+</html>
